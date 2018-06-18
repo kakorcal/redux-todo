@@ -2,7 +2,7 @@
   list-style: none;
   display: flex;
   align-items: center;
-  padding-bottom: 10px;
+  padding-bottom: 20px;
 }
 
 .Todo:not(:last-of-type) {

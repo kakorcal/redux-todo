@@ -4,8 +4,8 @@ import './TodoInput.css';
 const TodoInput = () => {
   return (
     <div className="TodoInput">
-      <input type="text" />
-      <button className="TodoButton--add">Add</button>
+      <input type="text" placeholder="Add todo..." />
+      <button className="TodoInput__button" />
     </div>
   );
 };

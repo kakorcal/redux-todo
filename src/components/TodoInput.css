@@ -1,0 +1,47 @@
+.TodoInput {
+  padding: 30px 6%;
+  display: flex;
+}
+
+.TodoInput input {
+  flex: 1;
+  font-size: 1.2rem;
+  margin-right: 10px;
+  padding-left: 10px;
+  color: #8f8d85;
+  border-radius: 4px;
+  border-style: solid;
+  border-color: #d2d3e3;
+  border-width: 1px;
+}
+
+.TodoInput__button {
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: white;
+  background-color: #f57173;
+  position: relative;
+  outline: 0;
+  border-style: none;
+  border-width: 0;
+}
+
+.TodoInput__button:after {
+  content: '\002B';
+  font-size: 1.2rem;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  transform: translateY(-50%);
+}
+
+.TodoInput__button:hover {
+  cursor: pointer;
+}
+
+.TodoInput__button:active {
+  top: 2px;
+}

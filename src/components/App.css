@@ -29,8 +29,9 @@
   background-color: #fefeff;
   position: absolute;
   align-self: center;
-  border-radius: 4px;
+  border-radius: 6px;
   box-shadow: 0px 0px 40px 2px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
 }
 
 @media only screen and (min-width: 415px) {

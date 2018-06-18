@@ -1,3 +1,7 @@
-.TodoList ul li {
-  list-style: none;
+.TodoList {
+  padding: 0 6%;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  height: 55%;
 }

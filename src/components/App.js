@@ -2,18 +2,18 @@ import React, { Component } from 'react';
 import './App.css';
 import Topbar from './Topbar';
 import TodoInputContainer from '../containers/TodoInputContainer';
-import TodoList from './TodoList';
+import TodoListContainer from '../containers/TodoListContainer';
 
-const App = () => {
+const App = props => {
   return (
     <div className="App">
       <div className="stripes">
         <div />
       </div>
       <div className="App__container">
-        <Topbar />
+        <Topbar {...props} />
         <TodoInputContainer />
-        <TodoList />
+        <TodoListContainer />
       </div>
     </div>
   );

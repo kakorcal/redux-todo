@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Topbar.css';
 
-const Topbar = () => {
+const Topbar = ({ todosLength }) => {
   return (
     <div className="Topbar">
       <div className="Topbar__row">
@@ -9,7 +9,7 @@ const Topbar = () => {
           <strong>Thursday, </strong>
           <span>10th</span>
         </span>
-        <span className="Topbar__tasks">12 Tasks</span>
+        <span className="Topbar__tasks">{todosLength} Tasks</span>
       </div>
       <div className="Topbar__row">
         <span className="Topbar__month">December</span>

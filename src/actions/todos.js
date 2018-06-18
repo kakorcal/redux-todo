@@ -8,3 +8,10 @@ export const addTodo = todoText => {
     }
   };
 };
+
+export const toggleTodoComplete = todo => {
+  return {
+    type: 'TOGGLE_TODO_COMPLETE',
+    todo
+  };
+};

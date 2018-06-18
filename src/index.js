@@ -6,7 +6,7 @@ import { applyMiddleware, compose, createStore } from 'redux';
 import reducers from './reducers';
 import { initialState } from './initialState';
 import './index.css';
-import App from './components/App';
+import AppContainer from './containers/AppContainer';
 
 const middleware = [thunk];
 const enhancers = [];
@@ -16,7 +16,7 @@ const store = createStore(reducers, initialState, composeEnhancers(applyMiddlewa
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <AppContainer />
   </Provider>,
   document.getElementById('root')
 );

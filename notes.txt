@@ -1,0 +1,7 @@
+color palette
+white: #FEFEFF
+purple: #5A5EE7
+red: #F57173
+lightgrey: #D2D3E3
+darkgrey: #8F8D85
+blue: #8FA9EA

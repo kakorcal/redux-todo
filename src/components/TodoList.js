@@ -1,24 +1,21 @@
 import React, { component } from 'react';
+import Todo from './Todo';
 import './TodoList.css';
 
 const TodoList = () => {
   return (
     <ul className="TodoList">
-      <li>Todo 1</li>
-      <li>Todo 2</li>
-      <li>Todo 3</li>
-      <li>Todo 1</li>
-      <li>Todo 2</li>
-      <li>Todo 3</li>
-      <li>Todo 1</li>
-      <li>Todo 2</li>
-      <li>Todo 3</li>
-      <li>Todo 1</li>
-      <li>Todo 2</li>
-      <li>Todo 3</li>
-      <li>Todo 1</li>
-      <li>Todo 2</li>
-      <li>Todo 3</li>
+      <Todo />
+      <Todo />
+      <Todo />
+      <Todo />
+      <Todo />
+      <Todo />
+      <Todo />
+      <Todo />
+      <Todo />
+      <Todo />
+      <Todo />
     </ul>
   );
 };

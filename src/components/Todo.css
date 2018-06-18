@@ -1,0 +1,56 @@
+.Todo {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+.Todo:not(:last-of-type) {
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(210, 211, 227, 0.7);
+}
+
+.Todo__button {
+  width: 1.8rem;
+  height: 1.8rem;
+  background-color: none;
+  outline: 0;
+  border-radius: 50%;
+  position: relative;
+  margin-right: 15px;
+  border-width: 1px;
+  border-color: #d2d3e3;
+}
+
+.Todo__button:hover {
+  cursor: pointer;
+}
+
+.Todo__button:active {
+  top: 2px;
+  border-color: #d2d3e3;
+  border-width: 1px;
+}
+
+.Todo__button--completed:before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  transform: translateY(-50%);
+  content: '\2713';
+  color: #8fa9ea;
+  font-size: 1.2rem;
+}
+
+.Todo__title {
+  color: #8f8d85;
+  flex: 1;
+  word-break: break-all;
+}
+
+.Todo__title--completed {
+  color: #d2d3e3;
+  text-decoration: line-through;
+}

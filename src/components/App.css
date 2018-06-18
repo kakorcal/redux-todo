@@ -1,0 +1,40 @@
+.App {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.stripes {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: linear-gradient(#5a5ee7 50%, #f57173 50%);
+  overflow: hidden;
+}
+
+.stripes div:nth-child(1) {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform: skewY(20deg);
+  background: linear-gradient(#5a5ee7 50%, #f57173 50%);
+}
+
+.App__container {
+  width: 80%;
+  height: 80%;
+  background-color: #fefeff;
+  position: absolute;
+  align-self: center;
+  border-radius: 4px;
+  box-shadow: 0px 0px 40px 2px rgba(0, 0, 0, 0.2);
+}
+
+@media only screen and (min-width: 415px) {
+  .App__container {
+    width: 60%;
+  }
+}

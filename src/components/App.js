@@ -5,9 +5,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
+        <div className="stripes">
+          <div />
+        </div>
+        <div className="App__container">
+          <p>Test</p>
+        </div>
       </div>
     );
   }

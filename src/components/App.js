@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Topbar from './Topbar';
-import TodoInput from './TodoInput';
+import TodoInputContainer from '../containers/TodoInputContainer';
 import TodoList from './TodoList';
 
 const App = () => {
@@ -12,7 +12,7 @@ const App = () => {
       </div>
       <div className="App__container">
         <Topbar />
-        <TodoInput />
+        <TodoInputContainer />
         <TodoList />
       </div>
     </div>

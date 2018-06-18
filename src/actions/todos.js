@@ -1,6 +1,10 @@
-export const addTodo = todo => {
+export const addTodo = todoText => {
   return {
     type: 'ADD_TODO',
-    todo
+    todo: {
+      id: '12345',
+      title: todoText,
+      complete: false
+    }
   };
 };

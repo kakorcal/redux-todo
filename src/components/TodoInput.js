@@ -1,11 +1,11 @@
 import React, { component } from 'react';
 import './TodoInput.css';
 
-const TodoInput = () => {
+const TodoInput = ({ todoText, handleInputChange, handleSubmit }) => {
   return (
     <div className="TodoInput">
-      <input type="text" placeholder="Add todo..." />
-      <button className="TodoInput__button" />
+      <input type="text" value={todoText} onChange={handleInputChange} placeholder="Add todo..." />
+      <button className="TodoInput__button" onClick={handleSubmit} />
     </div>
   );
 };

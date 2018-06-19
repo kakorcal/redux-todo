@@ -4,10 +4,6 @@ import TodoList from '../components/TodoList';
 import { toggleTodoComplete } from '../actions/todos';
 
 class TodoListContainer extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return <TodoList {...this.props} />;
   }
@@ -19,8 +15,8 @@ function mapStateToProps({ todos }) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    toggleTogoStatus(todo) {
-      return dispatch(toggleTodoComplete(todo));
+    toggleTodoStatus(id) {
+      return dispatch(toggleTodoComplete(id));
     }
   };
 }

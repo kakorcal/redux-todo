@@ -1,13 +1,15 @@
-import React, { component } from 'react';
+import React from 'react';
+import classNames from 'classnames';
 import './Todo.css';
 
-const Todo = () => {
+const Todo = ({ id, title, completed, toggleTodoStatus }) => {
+  let buttonClass = classNames('Todo__button', { 'Todo__button--completed': completed });
+  let titleClass = classNames('Todo__title', { 'Todo__title--completed': completed });
+
   return (
     <li className="Todo">
-      <button className="Todo__button Todo__button--completed" />
-      <p className="Todo__title Todo__title--completed">
-        My Todo Text more stuff I add i like to do alsd why did you leave me
-      </p>
+      <button className={buttonClass} onClick={() => toggleTodoStatus(id)} />
+      <p className={titleClass}>{title}</p>
     </li>
   );
 };

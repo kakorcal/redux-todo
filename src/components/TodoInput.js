@@ -1,4 +1,4 @@
-import React, { component } from 'react';
+import React from 'react';
 import './TodoInput.css';
 
 const TodoInput = ({ todoText, handleInputChange, handleSubmit }) => {

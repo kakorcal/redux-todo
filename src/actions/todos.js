@@ -9,9 +9,9 @@ export const addTodo = todoText => {
   };
 };
 
-export const toggleTodoComplete = todo => {
+export const toggleTodoComplete = id => {
   return {
     type: 'TOGGLE_TODO_COMPLETE',
-    todo
+    id
   };
 };

@@ -1,21 +1,14 @@
-import React, { component } from 'react';
+import React from 'react';
 import Todo from './Todo';
+import map from 'lodash/map';
 import './TodoList.css';
 
-const TodoList = () => {
+const TodoList = ({ todos, toggleTodoStatus }) => {
   return (
     <ul className="TodoList">
-      <Todo />
-      <Todo />
-      <Todo />
-      <Todo />
-      <Todo />
-      <Todo />
-      <Todo />
-      <Todo />
-      <Todo />
-      <Todo />
-      <Todo />
+      {map(todos, (todo, idx) => {
+        return <Todo key={idx} {...todo} toggleTodoStatus={toggleTodoStatus} />;
+      })}
     </ul>
   );
 };

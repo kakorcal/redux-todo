@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TodoInput from '../components/TodoInput';
-import { addTodo } from '../actions/todos';
+import { createTodo } from '../actions/todos';
 
 class TodoInputContainer extends Component {
   constructor(props) {
@@ -40,7 +40,7 @@ class TodoInputContainer extends Component {
 function mapDispatchToProps(dispatch) {
   return {
     addNewTodo(todoText) {
-      return dispatch(addTodo(todoText));
+      return dispatch(createTodo(todoText));
     }
   };
 }

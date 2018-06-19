@@ -4,9 +4,10 @@ import App from '../components/App';
 
 class AppContainer extends Component {
   render() {
-    // todo: add dates
     const todosLength = this.props.todos.length;
-    return <App todosLength={todosLength} />;
+    const now = new Date();
+
+    return <App todosLength={todosLength} now={now} />;
   }
 }
 

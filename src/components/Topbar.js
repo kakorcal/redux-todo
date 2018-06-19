@@ -1,18 +1,19 @@
 import React from 'react';
 import './Topbar.css';
+import dateFormat from 'dateformat';
 
-const Topbar = ({ todosLength }) => {
+const Topbar = ({ todosLength, now }) => {
   return (
     <div className="Topbar">
       <div className="Topbar__row">
         <span className="Topbar__date">
-          <strong>Thursday, </strong>
-          <span>10th</span>
+          <strong>{dateFormat(now, 'dddd')}, </strong>
+          <span>{dateFormat(now, 'dS')}</span>
         </span>
         <span className="Topbar__tasks">{todosLength} Tasks</span>
       </div>
       <div className="Topbar__row">
-        <span className="Topbar__month">December</span>
+        <span className="Topbar__month">{dateFormat(now, 'mmmm')}</span>
       </div>
     </div>
   );

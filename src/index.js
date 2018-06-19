@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { applyMiddleware, compose, createStore } from 'redux';
 import reducers from './reducers';
 import { initialState } from './initialState';
-import { startListeningForTodos } from './actions/todos';
+import { startListeningForTodos, getTodos } from './actions/todos';
 import './index.css';
 import AppContainer from './containers/AppContainer';
 
@@ -24,3 +24,4 @@ ReactDOM.render(
 
 // connect firebase listeners with redux here
 store.dispatch(startListeningForTodos());
+store.dispatch(getTodos());

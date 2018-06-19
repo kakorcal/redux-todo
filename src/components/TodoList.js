@@ -6,8 +6,8 @@ import './TodoList.css';
 const TodoList = ({ todos, toggleTodoStatus }) => {
   return (
     <ul className="TodoList">
-      {map(todos, (todo, idx) => {
-        return <Todo key={idx} {...todo} toggleTodoStatus={toggleTodoStatus} />;
+      {map(todos, (todo, key) => {
+        return <Todo key={key} id={key} todo={todo} toggleTodoStatus={toggleTodoStatus} />;
       })}
     </ul>
   );

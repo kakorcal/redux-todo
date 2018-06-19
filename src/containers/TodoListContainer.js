@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TodoList from '../components/TodoList';
-import { toggleTodoComplete } from '../actions/todos';
+import { setTodoComplete } from '../actions/todos';
 
 class TodoListContainer extends Component {
   render() {
@@ -15,8 +15,8 @@ function mapStateToProps({ todos }) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    toggleTodoStatus(id) {
-      return dispatch(toggleTodoComplete(id));
+    toggleTodoStatus(todo, key) {
+      return dispatch(setTodoComplete(todo, key));
     }
   };
 }

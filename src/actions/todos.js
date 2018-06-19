@@ -1,18 +1,28 @@
 import { database } from '../firebase';
-
+import map from 'lodash/map';
 const todosRef = database.ref('/todos');
 
-export const addTodo = todo => {
+export const addTodo = (todo, key) => {
   return {
     type: 'ADD_TODO',
-    todo
+    todo,
+    key
   };
 };
 
-export const toggleTodoComplete = key => {
+export const toggleTodoComplete = (todo, key) => {
   return {
     type: 'TOGGLE_TODO_COMPLETE',
+    todo,
     key
+  };
+};
+
+export const getTodos = () => {
+  return dispatch => {
+    todosRef.once('value').then(() => {
+      console.log('GET TODOS');
+    });
   };
 };
 
@@ -26,11 +36,11 @@ export const createTodo = todoText => {
   };
 };
 
-export const setTodoComplete = todo => {
+export const setTodoComplete = (todo, key) => {
   return dispatch => {
     todosRef
-      .child(todo.key)
-      .child('complete')
+      .child(key)
+      .child('completed')
       .set(!todo.completed)
       .then(() => {
         console.log('TODO TOGGLED COMPLETED STATUS');
@@ -41,11 +51,11 @@ export const setTodoComplete = todo => {
 export const startListeningForTodos = () => {
   return dispatch => {
     todosRef.on('child_added', snapshot => {
-      dispatch(addTodo(snapshot.val()));
+      dispatch(addTodo(snapshot.val(), snapshot.key));
     });
 
     todosRef.on('child_changed', snapshot => {
-      dispatch(toggleTodoComplete(snapshot.key));
+      dispatch(toggleTodoComplete(snapshot.val(), snapshot.key));
     });
   };
 };

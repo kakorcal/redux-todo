@@ -1,17 +1,51 @@
-export const addTodo = todoText => {
+import { database } from '../firebase';
+
+const todosRef = database.ref('/todos');
+
+export const addTodo = todo => {
   return {
     type: 'ADD_TODO',
-    todo: {
-      id: '12345',
-      title: todoText,
-      complete: false
-    }
+    todo
   };
 };
 
-export const toggleTodoComplete = id => {
+export const toggleTodoComplete = key => {
   return {
     type: 'TOGGLE_TODO_COMPLETE',
-    id
+    key
+  };
+};
+
+export const createTodo = todoText => {
+  return dispatch => {
+    const todo = { title: todoText, completed: false };
+
+    todosRef.push(todo).then(() => {
+      console.log('TODO ADDED TO DB');
+    });
+  };
+};
+
+export const setTodoComplete = todo => {
+  return dispatch => {
+    todosRef
+      .child(todo.key)
+      .child('complete')
+      .set(!todo.completed)
+      .then(() => {
+        console.log('TODO TOGGLED COMPLETED STATUS');
+      });
+  };
+};
+
+export const startListeningForTodos = () => {
+  return dispatch => {
+    todosRef.on('child_added', snapshot => {
+      dispatch(addTodo(snapshot.val()));
+    });
+
+    todosRef.on('child_changed', snapshot => {
+      dispatch(toggleTodoComplete(snapshot.key));
+    });
   };
 };

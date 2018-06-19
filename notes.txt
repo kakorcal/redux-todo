@@ -5,3 +5,84 @@ red: #F57173
 lightgrey: #D2D3E3
 darkgrey: #8F8D85
 blue: #8FA9EA
+
+/*
+  common react / redux mistakes
+  1. undefined components and action types due to bad import / export statements
+  2. uncaught in promise - error instead promise
+*/
+
+/*
+redux-saga - makes handling side effects (async calls) easier
+it makes use of generators in the background
+
+watcher saga - sees all dispatched actions. if action matches
+what they are watching, they assign it to a worker saga
+
+worker saga - process the async action
+*/
+
+/*
+  function* watchGetProducts() {
+    // when GET_ALL_PRODUCTS is dispatched, it calls getAllProducts worker
+    yield takeEvery(actions.GET_ALL_PRODUCTS, getAllProducts);
+  }
+
+  function* getAllProducts() {
+    // sends api call
+    const products = yield call(api.getProducts);
+    // put - dispatches another action with receiveProducts
+    yield put(actions.receiveProducts(products));
+  }
+
+*/
+
+/*
+  function* watchCheckout() {
+    while(true) {
+      yield take(actions.CHECKOUT_REQUEST);
+      yield call(checkout);
+    }
+  }
+
+  function* checkout() {
+    try {
+      const cart = yield select(getCart);
+      yield call(api.buyProducts, cart);
+      yield put(actions.checkoutSuccess(cart));
+    }catch (error) {
+      yield put(actions.checkoutFailure(error));
+    }
+  }
+
+*/
+
+/*
+  saga helpers
+    takeEvery - takes every matching action and runs the instructed saga,
+      can run concurrent tasks
+    takeLatest - same as takeEvery but cancels previous saga task if its still running
+
+  effect creators - returns objects. the saga middleware executes on the object during iteration process
+    call - runs a function, if it returns a promise, it pauses the saga till promise is resolved
+    put - dispatches actions
+
+    fork -
+    select -
+    race -
+    spawn -
+    join -
+    cancel -
+
+*/
+
+/*
+  Advantages
+    code looks synchronous
+    easy to write tests
+    sagas are composable
+    action - creators are pure, meaning you only return objects (not functions like thunks)
+    isolates side-effects to single area
+
+
+*/

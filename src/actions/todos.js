@@ -1,5 +1,4 @@
 import { database } from '../firebase';
-import map from 'lodash/map';
 const todosRef = database.ref('/todos');
 
 export const addTodo = (todo, key) => {

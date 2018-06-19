@@ -1,6 +1,5 @@
 import { initialState } from '../initialState';
 import { Object } from 'core-js';
-import map from 'lodash/map';
 
 export default function todosReducer(state = initialState.todos, action) {
   switch (action.type) {

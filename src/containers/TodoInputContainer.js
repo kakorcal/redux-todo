@@ -12,11 +12,19 @@ class TodoInputContainer extends Component {
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleKeyUp = this.handleKeyUp.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleInputChange(e) {
     this.setState({ todoText: e.target.value });
+  }
+
+  handleKeyUp(e) {
+    if (e.keyCode === 13 && this.state.todoText !== '') {
+      this.props.addNewTodo(this.state.todoText);
+      this.setState({ todoText: '' });
+    }
   }
 
   handleSubmit(e) {
@@ -30,6 +38,7 @@ class TodoInputContainer extends Component {
     return (
       <TodoInput
         todoText={this.state.todoText}
+        handleKeyUp={this.handleKeyUp}
         handleInputChange={this.handleInputChange}
         handleSubmit={this.handleSubmit}
       />

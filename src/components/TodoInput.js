@@ -1,10 +1,16 @@
 import React from 'react';
 import './TodoInput.css';
 
-const TodoInput = ({ todoText, handleInputChange, handleSubmit }) => {
+const TodoInput = ({ todoText, handleKeyUp, handleInputChange, handleSubmit }) => {
   return (
     <div className="TodoInput">
-      <input type="text" value={todoText} onChange={handleInputChange} placeholder="Add todo..." />
+      <input
+        type="text"
+        value={todoText}
+        onKeyUp={handleKeyUp}
+        onChange={handleInputChange}
+        placeholder="Add todo..."
+      />
       <button className="TodoInput__button" onClick={handleSubmit} />
     </div>
   );

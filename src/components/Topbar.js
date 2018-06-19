@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Topbar.css';
 import dateFormat from 'dateformat';
 
@@ -17,6 +18,11 @@ const Topbar = ({ todosLength, now }) => {
       </div>
     </div>
   );
+};
+
+Topbar.propTypes = {
+  todosLength: PropTypes.number,
+  now: PropTypes.instanceOf(Date)
 };
 
 export default Topbar;

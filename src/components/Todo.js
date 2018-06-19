@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import './Todo.css';
 
 const Todo = ({ id, todo, toggleTodoStatus }) => {
@@ -13,6 +14,15 @@ const Todo = ({ id, todo, toggleTodoStatus }) => {
       <p className={titleClass}>{title}</p>
     </li>
   );
+};
+
+Todo.propTypes = {
+  id: PropTypes.string,
+  todo: PropTypes.shape({
+    title: PropTypes.string,
+    completed: PropTypes.bool
+  }),
+  toggleTodoStatus: PropTypes.func
 };
 
 export default Todo;

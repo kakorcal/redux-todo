@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './TodoInput.css';
 
 const TodoInput = ({ todoText, handleKeyUp, handleInputChange, handleSubmit }) => {
@@ -14,6 +15,13 @@ const TodoInput = ({ todoText, handleKeyUp, handleInputChange, handleSubmit }) =
       <button className="TodoInput__button" onClick={handleSubmit} />
     </div>
   );
+};
+
+TodoInput.propTypes = {
+  todoText: PropTypes.string,
+  handleKeyUp: PropTypes.func,
+  handleInputChange: PropTypes.func,
+  handleSubmit: PropTypes.func
 };
 
 export default TodoInput;

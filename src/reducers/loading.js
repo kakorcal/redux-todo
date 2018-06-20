@@ -1,7 +1,7 @@
 export default function loadingReducer(state = false, action) {
   switch (action.type) {
-    case 'TOGGLE_LOAD':
-      return state ? false : true;
+    case 'SET_LOADING_STATE':
+      return action.loading;
     default:
       return state;
   }

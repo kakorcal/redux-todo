@@ -34,6 +34,16 @@
   overflow: hidden;
 }
 
+.App__loading {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  transform: translateY(-50%);
+  color: #8f8d85;
+}
+
 @media only screen and (min-width: 415px) {
   .App__container {
     width: 60%;

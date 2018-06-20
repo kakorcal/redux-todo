@@ -1,4 +1,5 @@
 import { database } from '../firebase';
+import { setLoadingState } from './loading';
 const todosRef = database.ref('/todos');
 
 export const addTodo = (todo, key) => {
@@ -21,6 +22,7 @@ export const getTodos = () => {
   return dispatch => {
     todosRef.once('value').then(() => {
       console.log('GET TODOS');
+      dispatch(setLoadingState(false));
     });
   };
 };

@@ -1,5 +1,6 @@
-export const toggleLoad = () => {
+export const setLoadingState = isLoading => {
   return {
-    type: 'TOGGLE_LOAD'
+    type: 'SET_LOADING_STATE',
+    loading: isLoading
   };
 };

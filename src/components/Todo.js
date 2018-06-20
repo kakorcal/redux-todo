@@ -15,6 +15,7 @@ const Todo = ({ id, todo, toggleTodoStatus }) => {
       <button className={buttonClass} onClick={() => toggleTodoStatus(todo, id)} />
       <p className={titleClass}>{title}</p>
       <span className={timeClass}>{dateFormat(timestamp, 'shortTime')}</span>
+      {/* <button className='Todo__button__remove'></button> */}
     </li>
   );
 };

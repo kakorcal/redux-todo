@@ -54,3 +54,12 @@
   color: #d2d3e3;
   text-decoration: line-through;
 }
+
+.Todo__timestamp {
+  color: #8f8d85;
+  font-size: 0.7rem;
+}
+
+.Todo__timestamp--completed {
+  color: #d2d3e3;
+}

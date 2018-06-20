@@ -17,7 +17,8 @@ const TodoList = ({ todos, toggleTodoStatus }) => {
 TodoList.propTypes = {
   todos: PropTypes.shape({
     title: PropTypes.string,
-    completed: PropTypes.bool
+    completed: PropTypes.bool,
+    timestamp: PropTypes.string
   }),
   toggleTodoStatus: PropTypes.func
 };

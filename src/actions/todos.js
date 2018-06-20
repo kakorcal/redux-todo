@@ -27,7 +27,8 @@ export const getTodos = () => {
 
 export const createTodo = todoText => {
   return dispatch => {
-    const todo = { title: todoText, completed: false };
+    const now = new Date();
+    const todo = { title: todoText, completed: false, timestamp: now.toUTCString() };
 
     todosRef.push(todo).then(() => {
       console.log('TODO ADDED TO DB');

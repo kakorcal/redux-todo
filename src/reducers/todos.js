@@ -8,6 +8,7 @@ export default function todosReducer(state = initialState.todos, action) {
       return Object.assign({}, state, { [action.key]: action.todo });
     case 'REMOVE_TODO_ITEM':
       // removing key from state!! state is not modified (aka remains immutable after destructuring)
+      // https://codeburst.io/use-es2015-object-rest-operator-to-omit-properties-38a3ecffe90
       let { [action.key]: removeKey, ...newState } = state;
       return Object.assign({}, newState);
     default:

@@ -1,5 +1,9 @@
+.TodoList__container {
+  height: 100%;
+}
+
 .TodoList {
-  padding: 0 6%;
   height: 60%;
+  padding: 0 6%;
   overflow: scroll;
 }

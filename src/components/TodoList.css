@@ -1,5 +1,5 @@
 .TodoList {
   padding: 0 6%;
+  height: 60%;
   overflow: scroll;
-  height: 55%;
 }

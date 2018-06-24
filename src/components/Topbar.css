@@ -1,6 +1,6 @@
 .Topbar {
   background-color: #f7f7f7;
-  padding: 30px 6%;
+  padding: 25px 6%;
   border-bottom: 1px solid #d2d3e3;
 }
 
@@ -11,7 +11,7 @@
 }
 
 .Topbar__row:not(:last-of-type) {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .Topbar__date {

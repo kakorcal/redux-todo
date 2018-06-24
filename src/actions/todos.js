@@ -18,6 +18,13 @@ export const toggleTodoComplete = (todo, key) => {
   };
 };
 
+export const removeTodoItem = key => {
+  return {
+    type: 'REMOVE_TODO_ITEM',
+    key
+  };
+};
+
 export const getTodos = () => {
   return dispatch => {
     todosRef.once('value').then(() => {
@@ -50,6 +57,17 @@ export const setTodoComplete = (todo, key) => {
   };
 };
 
+export const deleteTodoItem = key => {
+  return dispatch => {
+    todosRef
+      .child(key)
+      .remove()
+      .then(() => {
+        console.log(`TODO ${key} REMOVED`);
+      });
+  };
+};
+
 export const startListeningForTodos = () => {
   return dispatch => {
     todosRef.on('child_added', snapshot => {
@@ -58,6 +76,10 @@ export const startListeningForTodos = () => {
 
     todosRef.on('child_changed', snapshot => {
       dispatch(toggleTodoComplete(snapshot.val(), snapshot.key));
+    });
+
+    todosRef.on('child_removed', snapshot => {
+      dispatch(removeTodoItem(snapshot.key));
     });
   };
 };

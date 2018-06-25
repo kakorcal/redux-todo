@@ -1,11 +1,13 @@
 .TodoInput {
   padding: 30px 6%;
   display: flex;
+  height: 15vh;
 }
 
 .TodoInput input {
   flex: 1;
   font-size: 1.1rem;
+  width: 2.5rem;
   margin-right: 15px;
   padding-left: 10px;
   color: #8f8d85;

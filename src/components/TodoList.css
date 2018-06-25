@@ -1,9 +1,9 @@
 .TodoList__container {
-  height: 100%;
+  height: 48vh;
 }
 
 .TodoList {
-  height: 60%;
+  height: 100%;
   padding: 0 6%;
   overflow: scroll;
 }

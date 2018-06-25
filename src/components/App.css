@@ -25,7 +25,7 @@
 
 .App__container {
   width: 80%;
-  height: 80%;
+  height: 80vh;
   background-color: #fefeff;
   position: absolute;
   align-self: center;

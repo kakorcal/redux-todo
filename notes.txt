@@ -83,6 +83,9 @@ worker saga - process the async action
     sagas are composable
     action - creators are pure, meaning you only return objects (not functions like thunks)
     isolates side-effects to single area
+*/
 
-
+/*
+  Links
+    https://www.youtube.com/watch?v=aH2qQGgugG0&t=5s
 */

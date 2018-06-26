@@ -83,3 +83,10 @@ export const startListeningForTodos = () => {
     });
   };
 };
+
+// state flow (redux-thunk)
+// thunk action (api call) -> firebase listener dispatch sync action ->
+// payload passed to reducer -> reducer updates state -> store updated -> rerender
+
+// state flow (redux-saga)
+//

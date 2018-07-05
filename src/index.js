@@ -7,9 +7,9 @@ import createSagaMiddleware from 'redux-saga';
 import logger from 'redux-logger';
 import reducers from './reducers';
 import rootSaga from './sagas/index';
-import { initialState } from './initialState';
-import { startListeningForTodos, getTodos } from './actions/todos';
-import { setLoadingState } from './actions/loading';
+import initialState from './initialState';
+// import { startListeningForTodos, getTodos } from './actions/todos';
+// import { setLoadingState } from './actions/loading';
 import './index.css';
 import AppContainer from './containers/AppContainer';
 
@@ -29,6 +29,8 @@ ReactDOM.render(
 );
 
 // connect firebase listeners with redux here
+/*
 store.dispatch(startListeningForTodos());
 store.dispatch(getTodos());
 store.dispatch(setLoadingState(true));
+ */

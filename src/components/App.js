@@ -15,7 +15,6 @@ const App = ({ todosLength, loading, now }) => {
       </div>
     );
   };
-  console.log('loading', loading);
 
   const loadingComponent = () => {
     return (

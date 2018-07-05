@@ -1,4 +1,4 @@
-export const initialState = {
+export default {
   todos: {
     // key1: {
     //   title: 'Sleep',

@@ -1,5 +1,5 @@
 import { database } from '../firebase';
-import { setLoadingState } from './loading';
+// import { setLoadingState } from './loading';
 const todosRef = database.ref('/todos');
 
 export const addTodo = (todo, key) => {
@@ -24,7 +24,7 @@ export const removeTodoItem = key => {
     key
   };
 };
-
+/*
 export const getTodos = () => {
   return dispatch => {
     todosRef.once('value').then(() => {
@@ -33,16 +33,24 @@ export const getTodos = () => {
     });
   };
 };
-
+ */
 export const createTodo = todoText => {
-  return dispatch => {
-    const now = new Date();
-    const todo = { title: todoText, completed: false, timestamp: now.toUTCString() };
+  const now = new Date();
+  const todo = { title: todoText, completed: false, timestamp: now.toUTCString() };
 
-    todosRef.push(todo).then(() => {
-      console.log('TODO ADDED TO DB');
-    });
+  return {
+    type: 'CREATE_TODO',
+    todo
   };
+  /*
+    return dispatch => {
+      const now = new Date();
+      const todo = { title: todoText, completed: false, timestamp: now.toUTCString() };
+      todosRef.push(todo).then(() => {
+        console.log('TODO ADDED TO DB');
+      });
+    };
+  */
 };
 
 export const setTodoComplete = (todo, key) => {
@@ -68,6 +76,7 @@ export const deleteTodoItem = key => {
   };
 };
 
+/*
 export const startListeningForTodos = () => {
   return dispatch => {
     todosRef.on('child_added', snapshot => {
@@ -83,6 +92,7 @@ export const startListeningForTodos = () => {
     });
   };
 };
+ */
 
 // state flow (redux-thunk)
 // thunk action (api call) -> firebase listener dispatch sync action ->

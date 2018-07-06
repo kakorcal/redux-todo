@@ -1,9 +1,9 @@
 import { take, fork, call, put } from 'redux-saga/effects';
 import { eventChannel, END } from 'redux-saga';
 import { database } from '../firebase';
-import { addTodo, toggleTodoComplete } from '../actions/todos';
+import { addTodo, toggleTodoComplete, removeTodoItem } from '../actions/todos';
 import { setLoadingState } from '../actions/loading';
-import { CREATE_TODO, SET_TODO_COMPLETE } from '../actionTypes';
+import { CREATE_TODO, SET_TODO_COMPLETE, DELETE_TODO_ITEM } from '../actionTypes';
 const todosRef = database.ref('/todos');
 const LOOP = true;
 
@@ -19,6 +19,10 @@ function changeTodoComplete(todo, key) {
     .child(key)
     .child('completed')
     .set(!todo.completed);
+}
+
+function deleteTodo(key) {
+  return todosRef.child(key).remove();
 }
 
 /*
@@ -42,6 +46,18 @@ function* watchSetTodoComplete() {
 
     try {
       yield fork(changeTodoComplete, todo, key);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+}
+
+function* watchDeleteTodoItem() {
+  while (LOOP) {
+    let { key } = yield take(DELETE_TODO_ITEM);
+
+    try {
+      yield fork(deleteTodo, key);
     } catch (err) {
       console.log(err);
     }
@@ -78,6 +94,15 @@ function* watchChangeEvent() {
   while (LOOP) {
     const snapshot = yield take(changeChannel);
     yield put(toggleTodoComplete(snapshot.val(), snapshot.key));
+  }
+}
+
+function* watchDeleteEvent() {
+  const deleteChannel = yield call(deleteEvent);
+
+  while (LOOP) {
+    const snapshot = yield take(deleteChannel);
+    yield put(removeTodoItem(snapshot.key));
   }
 }
 
@@ -124,10 +149,25 @@ function changeEvent() {
   return listener;
 }
 
+function deleteEvent() {
+  const listener = eventChannel(emitter => {
+    todosRef.on('child_removed', snapshot => {
+      console.log('child removed', snapshot.val());
+      emitter(snapshot);
+    });
+
+    return () => todosRef.off('child_removed');
+  });
+
+  return listener;
+}
+
 export default [
   fork(watchGetOnceEvent),
   fork(watchCreateTodo),
   fork(watchCreateEvent),
   fork(watchSetTodoComplete),
-  fork(watchChangeEvent)
+  fork(watchChangeEvent),
+  fork(watchDeleteTodoItem),
+  fork(watchDeleteEvent)
 ];

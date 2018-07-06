@@ -1,7 +1,17 @@
-import { database } from '../firebase';
-import { ADD_TODO, TOGGLE_TODO_COMPLETE, REMOVE_TODO_ITEM, CREATE_TODO, SET_TODO_COMPLETE } from '../actionTypes';
-const todosRef = database.ref('/todos');
+import {
+  ADD_TODO,
+  TOGGLE_TODO_COMPLETE,
+  REMOVE_TODO_ITEM,
+  CREATE_TODO,
+  SET_TODO_COMPLETE,
+  DELETE_TODO_ITEM
+} from '../actionTypes';
+// import { database } from '../firebase';
+// const todosRef = database.ref('/todos');
 
+/*
+  Actions dispatch after api calls (updates ui)
+*/
 export const addTodo = (todo, key) => {
   return {
     type: ADD_TODO,
@@ -24,6 +34,7 @@ export const removeTodoItem = key => {
     key
   };
 };
+
 /*
 export const getTodos = () => {
   return dispatch => {
@@ -34,6 +45,10 @@ export const getTodos = () => {
   };
 };
  */
+
+/*
+  Actions dispatched before api calls (updates database)
+*/
 export const createTodo = todoText => {
   const now = new Date();
   const todo = { title: todoText, completed: false, timestamp: now.toUTCString() };
@@ -74,14 +89,21 @@ export const setTodoComplete = (todo, key) => {
 };
 
 export const deleteTodoItem = key => {
-  return dispatch => {
-    todosRef
-      .child(key)
-      .remove()
-      .then(() => {
-        console.log(`TODO ${key} REMOVED`);
-      });
+  return {
+    type: DELETE_TODO_ITEM,
+    key
   };
+
+  /*
+    return dispatch => {
+      todosRef
+        .child(key)
+        .remove()
+        .then(() => {
+          console.log(`TODO ${key} REMOVED`);
+        });
+    };
+  */
 };
 
 /*

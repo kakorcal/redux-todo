@@ -1,9 +1,9 @@
-import { database } from '../firebase';
-import { addTodo } from '../actions/todos';
-// import { setLoadingState } from './loading';
 import { take, fork, call, put } from 'redux-saga/effects';
 import { eventChannel, END } from 'redux-saga';
+import { database } from '../firebase';
+import { addTodo } from '../actions/todos';
 import { setLoadingState } from '../actions/loading';
+import { CREATE_TODO } from '../actionTypes';
 const todosRef = database.ref('/todos');
 
 /*
@@ -18,7 +18,7 @@ function createTodo(todo) {
 */
 function* watchCreateTodo() {
   while (true) {
-    let action = yield take('CREATE_TODO');
+    let action = yield take(CREATE_TODO);
 
     try {
       yield fork(createTodo, action.todo);

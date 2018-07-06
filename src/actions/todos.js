@@ -1,10 +1,10 @@
 import { database } from '../firebase';
-// import { setLoadingState } from './loading';
+import { ADD_TODO, TOGGLE_TODO_COMPLETE, REMOVE_TODO_ITEM, CREATE_TODO } from '../actionTypes';
 const todosRef = database.ref('/todos');
 
 export const addTodo = (todo, key) => {
   return {
-    type: 'ADD_TODO',
+    type: ADD_TODO,
     todo,
     key
   };
@@ -12,7 +12,7 @@ export const addTodo = (todo, key) => {
 
 export const toggleTodoComplete = (todo, key) => {
   return {
-    type: 'TOGGLE_TODO_COMPLETE',
+    type: TOGGLE_TODO_COMPLETE,
     todo,
     key
   };
@@ -20,7 +20,7 @@ export const toggleTodoComplete = (todo, key) => {
 
 export const removeTodoItem = key => {
   return {
-    type: 'REMOVE_TODO_ITEM',
+    type: REMOVE_TODO_ITEM,
     key
   };
 };
@@ -39,7 +39,7 @@ export const createTodo = todoText => {
   const todo = { title: todoText, completed: false, timestamp: now.toUTCString() };
 
   return {
-    type: 'CREATE_TODO',
+    type: CREATE_TODO,
     todo
   };
   /*

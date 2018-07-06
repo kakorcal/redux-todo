@@ -1,5 +1,5 @@
 import { database } from '../firebase';
-import { ADD_TODO, TOGGLE_TODO_COMPLETE, REMOVE_TODO_ITEM, CREATE_TODO } from '../actionTypes';
+import { ADD_TODO, TOGGLE_TODO_COMPLETE, REMOVE_TODO_ITEM, CREATE_TODO, SET_TODO_COMPLETE } from '../actionTypes';
 const todosRef = database.ref('/todos');
 
 export const addTodo = (todo, key) => {
@@ -54,15 +54,23 @@ export const createTodo = todoText => {
 };
 
 export const setTodoComplete = (todo, key) => {
-  return dispatch => {
-    todosRef
-      .child(key)
-      .child('completed')
-      .set(!todo.completed)
-      .then(() => {
-        console.log('TODO TOGGLED COMPLETED STATUS');
-      });
+  return {
+    type: SET_TODO_COMPLETE,
+    todo,
+    key
   };
+
+  /*
+    return dispatch => {
+      todosRef
+        .child(key)
+        .child('completed')
+        .set(!todo.completed)
+        .then(() => {
+          console.log('TODO TOGGLED COMPLETED STATUS');
+        });
+    };
+  */
 };
 
 export const deleteTodoItem = key => {

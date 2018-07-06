@@ -1,10 +1,11 @@
 import { take, fork, call, put } from 'redux-saga/effects';
 import { eventChannel, END } from 'redux-saga';
 import { database } from '../firebase';
-import { addTodo } from '../actions/todos';
+import { addTodo, toggleTodoComplete } from '../actions/todos';
 import { setLoadingState } from '../actions/loading';
-import { CREATE_TODO } from '../actionTypes';
+import { CREATE_TODO, SET_TODO_COMPLETE } from '../actionTypes';
 const todosRef = database.ref('/todos');
+const LOOP = true;
 
 /*
   APIS
@@ -13,15 +14,34 @@ function createTodo(todo) {
   return todosRef.push(todo);
 }
 
+function changeTodoComplete(todo, key) {
+  return todosRef
+    .child(key)
+    .child('completed')
+    .set(!todo.completed);
+}
+
 /*
   ACTION LISTENERS
 */
 function* watchCreateTodo() {
-  while (true) {
+  while (LOOP) {
     let action = yield take(CREATE_TODO);
 
     try {
       yield fork(createTodo, action.todo);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+}
+
+function* watchSetTodoComplete() {
+  while (LOOP) {
+    let { todo, key } = yield take(SET_TODO_COMPLETE);
+
+    try {
+      yield fork(changeTodoComplete, todo, key);
     } catch (err) {
       console.log(err);
     }
@@ -46,9 +66,18 @@ function* watchGetOnceEvent() {
 function* watchCreateEvent() {
   const createChannel = yield call(createEvent);
 
-  while (true) {
+  while (LOOP) {
     const snapshot = yield take(createChannel);
     yield put(addTodo(snapshot.val(), snapshot.key));
+  }
+}
+
+function* watchChangeEvent() {
+  const changeChannel = yield call(changeEvent);
+
+  while (LOOP) {
+    const snapshot = yield take(changeChannel);
+    yield put(toggleTodoComplete(snapshot.val(), snapshot.key));
   }
 }
 
@@ -82,4 +111,23 @@ function createEvent() {
   return listener;
 }
 
-export default [fork(watchGetOnceEvent), fork(watchCreateTodo), fork(watchCreateEvent)];
+function changeEvent() {
+  const listener = eventChannel(emitter => {
+    todosRef.on('child_changed', snapshot => {
+      console.log('child changed', snapshot.val());
+      emitter(snapshot);
+    });
+
+    return () => todosRef.off('child_changed');
+  });
+
+  return listener;
+}
+
+export default [
+  fork(watchGetOnceEvent),
+  fork(watchCreateTodo),
+  fork(watchCreateEvent),
+  fork(watchSetTodoComplete),
+  fork(watchChangeEvent)
+];
